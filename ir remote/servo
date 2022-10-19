@@ -1,0 +1,48 @@
+#include (IRremote.h)
+#include (servo.h)
+#define plus 0xA3C8EDDB
+#define minus 0xF076C13B
+
+const int RECV_PIN = 2;
+Servo servo;
+int val
+bool cwRotation, ccwRotation;
+
+IRrecv irrecv(RECV_PIN);
+
+decode_results results;
+
+void.setup()
+[
+    serial.begin(2500);
+    irrecv.enableIRIn(); // Start the receiver
+    servo.attach(9);
+]
+
+void.loop()
+[
+    if (irrecv.decode(&resultsn(results.)) {
+    Serial.printlvalue, HEX);
+    irrecv.resume(); // Receive the next value
+
+    if (results.value == plus)
+]
+[
+    cwRotation = !ccwRotation;
+    ccwRotation = false;
+
+]
+
+
+
+}
+  if (cwRotation && (val != 175))  {
+    val++;                         //for colockwise button
+  }
+  if (ccwRotation && (val != 0))  {
+    val--;                         //for counter colockwise button
+  }
+  servo.write(val);
+  delay(20);          //General speed
+}
+
